@@ -1,0 +1,314 @@
+:root {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --accent-red: #ef4444;
+    --accent-green: #10b981;
+    --accent-purple: #8b5cf6;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.app-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Header */
+.header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.header-content .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+#searchInput {
+    width: 100%;
+    padding: 1.2rem 1.2rem 1.2rem 3rem;
+    font-size: 1.1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.filter-stats {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Results Section */
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.result-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.result-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.case-no {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.case-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.sys-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+}
+.sys-V { background-color: var(--accent-purple); } /* 民事 */
+.sys-M { background-color: var(--accent-red); }    /* 刑事 */
+.sys-A { background-color: var(--accent-green); }  /* 行政 */
+
+.main-text-preview {
+    background-color: #f1f5f9;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--text-main);
+    border-left: 4px solid var(--primary-color);
+    white-space: pre-wrap;
+    max-height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main-text-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(transparent, #f1f5f9);
+}
+
+.highlight {
+    background-color: #fef08a;
+    color: #854d0e;
+    font-weight: 700;
+    padding: 0 0.15rem;
+    border-radius: 0.2rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 4rem auto;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    max-width: 800px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+.modal-meta {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.modal-body h3 {
+    margin: 1.5rem 0 0.5rem 0;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.text-block {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    white-space: pre-wrap;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.main-text-block {
+    font-weight: 500;
+    border-left: 4px solid var(--primary-color);
+}
+
+.primary-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-color);
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+        width: auto;
+    }
+}
