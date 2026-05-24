@@ -3,57 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>職場不法侵害 裁判書檢索系統</title>
-    <!-- Google Fonts: Noto Sans TC for traditional chinese -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>職場不法侵害 — 裁判書快速檢索</title>
+    <meta name="description" content="快速檢索司法院裁判書系統中與「職場不法侵害」相關之裁判書，支援二次關鍵字篩選。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <svg xmlns="http://www.w3.org/2000/width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    <h1>職場不法侵害 裁判書檢索系統</h1>
+        <!-- Animated background -->
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-glow bg-glow-3"></div>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="hero">
+                <div class="badge">司法院裁判書系統 — 快速通道</div>
+                <h1>職場不法侵害<br><span class="text-gradient">裁判書檢索</span></h1>
+                <p class="subtitle">輸入關鍵字，直接在司法院裁判書系統中進行二次檢索</p>
+            </div>
+
+            <div class="search-card">
+                <div class="search-box" id="searchBox">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="輸入二次檢索關鍵字（例如：損害賠償、職業災害、確認僱傭關係...）" 
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn" class="search-btn" title="搜尋">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"/>
+                            <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </button>
                 </div>
-                <p class="subtitle">針對預先抓取之民、刑、行政裁判書「主文」進行快速二次檢索</p>
+                <p class="search-hint">按 Enter 或點擊箭頭，將在新分頁開啟司法院查詢結果</p>
             </div>
-        </header>
 
-        <!-- Search Section -->
-        <section class="search-section">
-            <div class="search-box">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" id="searchInput" placeholder="輸入關鍵字以過濾「主文」內容 (例如: 駁回、賠償)..." autocomplete="off">
+            <!-- Quick keyword tags -->
+            <div class="quick-tags">
+                <span class="tag-label">常用關鍵字：</span>
+                <button class="tag" data-kw="損害賠償">損害賠償</button>
+                <button class="tag" data-kw="職業災害">職業災害</button>
+                <button class="tag" data-kw="確認僱傭關係">確認僱傭關係</button>
+                <button class="tag" data-kw="資遣費">資遣費</button>
+                <button class="tag" data-kw="過失傷害">過失傷害</button>
+                <button class="tag" data-kw="勞動基準法">勞動基準法</button>
+                <button class="tag" data-kw="霸凌">霸凌</button>
+                <button class="tag" data-kw="精神慰撫金">精神慰撫金</button>
             </div>
-            <div class="filter-stats" id="statsDisplay">
-                載入資料中...
-            </div>
-        </section>
 
-        <!-- Results Section -->
-        <main class="results-section">
-            <div id="resultsList" class="results-list">
-                <!-- Data cards will be injected here by JS -->
+            <!-- Direct link (no keyword) -->
+            <div class="direct-link">
+                <button id="directBtn" class="link-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    不輸入關鍵字，直接瀏覽全部「職場不法侵害」相關裁判書
+                </button>
             </div>
         </main>
-    </div>
 
-    <!-- Modal for full text -->
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h2 id="modalTitle">裁判字號</h2>
-            <div class="modal-meta" id="modalMeta"></div>
-            <div class="modal-body">
-                <h3>主文</h3>
-                <div id="modalMainText" class="text-block main-text-block"></div>
-                <h3>完整內容</h3>
-                <div id="modalFullText" class="text-block"></div>
-                <a id="modalLink" href="#" target="_blank" class="primary-btn">前往司法院查看原始網頁</a>
-            </div>
-        </div>
+        <footer class="footer">
+            <p>本工具僅為司法院裁判書系統之快捷入口，所有資料來源為<a href="https://judgment.judicial.gov.tw" target="_blank" rel="noopener">司法院裁判書查詢系統</a></p>
+        </footer>
     </div>
 
     <script src="app.js"></script>
